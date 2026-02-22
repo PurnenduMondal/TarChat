@@ -47,12 +47,12 @@ export default function Sidebar() {
       {/* Sidebar - hidden on mobile when in a conversation */}
       <aside
         className={`
-          w-full md:w-80 lg:w-96 bg-white border-r border-gray-200 flex flex-col h-full
+          w-full md:w-80 lg:w-96 bg-white shadow-lg flex flex-col h-full
           ${isOnMobileChatPage ? "hidden md:flex" : "flex"}
         `}
       >
         {/* Header */}
-        <div className="px-4 py-4 border-b border-gray-100 bg-white">
+        <div className="px-4 py-4 bg-white shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <UserButton afterSignOutUrl="/sign-in" />

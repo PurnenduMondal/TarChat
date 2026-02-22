@@ -155,9 +155,9 @@ export default function ChatWindow({ conversationId }: Props) {
   const { name, subtitle, avatar, isOnline } = getHeaderInfo();
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-gray-50">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 pt-safe border-b border-gray-200 bg-white shadow-sm z-10" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
+      <div className="flex items-center gap-3 px-4 py-3 pt-safe bg-white shadow-md z-10" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
         {/* Back button (mobile) */}
         <button
           onClick={() => router.push("/chat")}
@@ -277,7 +277,7 @@ export default function ChatWindow({ conversationId }: Props) {
 
       {/* Error state */}
       {sendError && (
-        <div className="px-4 py-2 bg-red-50 border-t border-red-100 flex items-center justify-between">
+        <div className="px-4 py-2 bg-red-50 shadow-inner flex items-center justify-between">
           <span className="text-sm text-red-600">{sendError}</span>
           <button
             onClick={handleSend}
@@ -289,7 +289,7 @@ export default function ChatWindow({ conversationId }: Props) {
       )}
 
       {/* Input */}
-      <div className="px-4 py-3 border-t border-gray-200 bg-white">
+      <div className="px-4 py-3 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
         <div className="flex items-center gap-2">
           <div className="flex-1 flex items-start gap-2 bg-gray-100 rounded-2xl px-4 py-2.5">
             <textarea

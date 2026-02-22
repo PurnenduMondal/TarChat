@@ -80,7 +80,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
           {/* Reaction picker - shows on message hover */}
           {!message.isDeleted && (
             <div
-              className={`absolute -top-10 hidden group-hover:flex items-center gap-1 bg-white rounded-xl shadow-xl border border-gray-200 px-3 py-2 z-20 ${
+              className={`absolute -top-10 hidden group-hover:flex items-center gap-1 bg-white rounded-xl shadow-lg px-3 py-2 z-20 ${
                 isOwn ? "right-0" : "left-0"
               }`}
             >
@@ -101,7 +101,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
           {!message.isDeleted && isOwn && (
             <button
               onClick={handleDelete}
-              className="absolute -bottom-2 -left-2 hidden group-hover:block bg-white rounded-full shadow-lg border border-gray-200 p-1 text-gray-400 hover:text-red-500 transition-colors z-30"
+              className="absolute -bottom-2 -left-2 hidden group-hover:block bg-white rounded-full shadow-lg p-1 text-gray-400 hover:text-red-500 hover:shadow-xl transition-all z-30"
               title="Delete message"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,10 +118,10 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
               <button
                 key={r.emoji}
                 onClick={() => handleReaction(r.emoji)}
-                className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border transition-colors ${
+                className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full transition-all ${
                   currentUserId && r.userIds.includes(currentUserId)
-                    ? "bg-blue-50 border-blue-300 text-blue-700"
-                    : "bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300"
+                    ? "bg-blue-100 text-blue-700 shadow-sm"
+                    : "bg-white text-gray-600 shadow-sm hover:shadow-md"
                 }`}
               >
                 <span>{r.emoji}</span>

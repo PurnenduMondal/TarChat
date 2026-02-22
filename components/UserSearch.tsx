@@ -36,7 +36,7 @@ export default function UserSearch({ onClose, onSelectUser }: Props) {
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-white">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100">
+      <div className="flex items-center gap-3 px-4 py-3 bg-white shadow-sm">
         <button onClick={onClose} className="p-1.5 hover:bg-gray-100 rounded-lg">
           <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
