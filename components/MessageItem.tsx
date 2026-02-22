@@ -101,7 +101,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
           {!message.isDeleted && isOwn && (
             <button
               onClick={handleDelete}
-              className="absolute -top-2 -left-2 hidden group-hover:block bg-white rounded-full shadow-lg border border-gray-200 p-1 text-gray-400 hover:text-red-500 transition-colors z-30"
+              className="absolute -bottom-2 -left-2 hidden group-hover:block bg-white rounded-full shadow-lg border border-gray-200 p-1 text-gray-400 hover:text-red-500 transition-colors z-30"
               title="Delete message"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
