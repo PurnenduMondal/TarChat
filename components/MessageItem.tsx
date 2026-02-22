@@ -5,8 +5,6 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { formatMessageTime } from "@/lib/utils";
 
-const ALLOWED_REACTIONS = ["👍", "❤️", "😂", "😮", "😢"];
-
 interface Props {
   message: any;
   isOwn: boolean;
@@ -14,7 +12,7 @@ interface Props {
   currentUserId?: Id<"users">;
 }
 
-export default function MessageItem({ message, isOwn, currentUserId }: Props) {
+export default function MessageItem({ message, isOwn, allowedReactions, currentUserId }: Props) {
   const deleteMessage = useMutation(api.messages.deleteMessage);
   const toggleReaction = useMutation(api.messages.toggleReaction);
 
@@ -84,7 +82,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
                 isOwn ? "right-0" : "left-0"
               }`}
             >
-              {ALLOWED_REACTIONS.map((emoji) => (
+              {allowedReactions.map((emoji) => (
                 <button
                   key={emoji}
                   onClick={() => handleReaction(emoji)}
