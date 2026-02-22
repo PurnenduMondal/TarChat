@@ -32,7 +32,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
 
   return (
     <div
-      className={`flex items-end gap-2 group mb-1 relative ${isOwn ? "flex-row-reverse" : "flex-row"}`}
+      className={`flex items-end gap-2 mb-1 relative ${isOwn ? "flex-row-reverse" : "flex-row"}`}
     >
       {/* Avatar */}
       {!isOwn && (
@@ -58,7 +58,7 @@ export default function MessageItem({ message, isOwn, currentUserId }: Props) {
         )}
 
         {/* Message bubble */}
-        <div className="relative">
+        <div className="relative group">
           {message.isDeleted ? (
             <div className={`px-4 py-2.5 rounded-2xl ${isOwn ? "rounded-br-sm" : "rounded-bl-sm"} bg-gray-100`}>
               <p className="text-sm text-gray-400 italic">This message was deleted</p>

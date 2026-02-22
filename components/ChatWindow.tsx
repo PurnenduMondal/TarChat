@@ -26,8 +26,8 @@ export default function ChatWindow({ conversationId }: Props) {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const conversation = useQuery(api.conversations.getConversation, { conversationId });
   const messages = useQuery(api.messages.listMessages, { conversationId });
@@ -92,6 +92,11 @@ export default function ChatWindow({ conversationId }: Props) {
     setInput("");
     setSendError(null);
 
+    // Reset textarea height
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+    }
+
     try {
       await sendMessage({ conversationId, content });
       scrollToBottom(true);
@@ -101,8 +106,14 @@ export default function ChatWindow({ conversationId }: Props) {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
+
+    // Auto-resize textarea
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = Math.min(inputRef.current.scrollHeight, 128) + 'px';
+    }
 
     // Typing indicator
     setTyping({ conversationId });
@@ -280,15 +291,16 @@ export default function ChatWindow({ conversationId }: Props) {
       {/* Input */}
       <div className="px-4 py-3 border-t border-gray-200 bg-white">
         <div className="flex items-center gap-2">
-          <div className="flex-1 flex items-center gap-2 bg-gray-100 rounded-2xl px-4 py-2.5">
-            <input
+          <div className="flex-1 flex items-start gap-2 bg-gray-100 rounded-2xl px-4 py-2.5">
+            <textarea
               ref={inputRef}
-              type="text"
               value={input}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={`Message ${name}...`}
-              className="flex-1 bg-transparent text-sm focus:outline-none text-gray-900 placeholder-gray-400"
+              rows={1}
+              className="flex-1 bg-transparent text-sm focus:outline-none text-gray-900 placeholder-gray-400 resize-none max-h-32 overflow-y-auto"
+              style={{ minHeight: '20px' }}
             />
           </div>
           <button
