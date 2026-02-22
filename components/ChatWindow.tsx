@@ -146,7 +146,7 @@ export default function ChatWindow({ conversationId }: Props) {
   return (
     <div className="flex flex-col h-full bg-white">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-white shadow-sm z-10">
+      <div className="flex items-center gap-3 px-4 py-3 pt-safe border-b border-gray-200 bg-white shadow-sm z-10" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
         {/* Back button (mobile) */}
         <button
           onClick={() => router.push("/chat")}
